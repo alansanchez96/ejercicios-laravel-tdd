@@ -58,8 +58,6 @@ class EloquentTest extends TestCase
 
     public function test_check_or_create_user()
     {
-        $this->withoutExceptionHandling();
-
         $response = $this->get('users/check/john/john@john.com');
         $response->assertStatus(200);
         $this->assertDatabaseHas('users', [
@@ -74,6 +72,7 @@ class EloquentTest extends TestCase
 
     public function test_create_project()
     {
+        $this->withoutExceptionHandling();
         $response = $this->post('projects', ['name' => 'Some name']);
         $response->assertRedirect();
     }
