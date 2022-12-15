@@ -114,7 +114,6 @@ class EloquentTest extends TestCase
 
     public function test_mass_delete_users()
     {
-        $this->withoutExceptionHandling();
         User::factory(4)->create();
         $this->assertDatabaseCount('users', 4);
 
@@ -127,6 +126,7 @@ class EloquentTest extends TestCase
 
     public function test_soft_delete_projects()
     {
+        $this->withoutExceptionHandling();
         $project = new Project();
         $project->name = 'Some name';
         $project->save();
