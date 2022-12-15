@@ -26,6 +26,14 @@ class ProjectController extends Controller
         //   where name = $request->old_name
 
         // Insert Eloquent statement below
+        Project::updateOrCreate(
+            [
+                'name' => $request->old_name
+            ],
+            [
+                'name' => $request->new_name
+            ]
+        );
 
         return redirect('/')->with('success', 'Projects updated');
     }
@@ -50,5 +58,4 @@ class ProjectController extends Controller
 
         return redirect('/')->with('success', 'Project created');
     }
-
 }

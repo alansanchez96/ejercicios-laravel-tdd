@@ -72,13 +72,15 @@ class EloquentTest extends TestCase
 
     public function test_create_project()
     {
-        $this->withoutExceptionHandling();
+        
         $response = $this->post('projects', ['name' => 'Some name']);
         $response->assertRedirect();
     }
 
     public function test_mass_update_projects()
     {
+        $this->withoutExceptionHandling();
+        
         $project = new Project();
         $project->name = 'Old name';
         $project->save();
