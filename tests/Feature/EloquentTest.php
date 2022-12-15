@@ -97,7 +97,6 @@ class EloquentTest extends TestCase
 
     public function test_check_or_update_user()
     {
-        $this->withoutExceptionHandling();
         $response = $this->get('users/check_update/john/john@john.com');
         $response->assertStatus(200);
         $this->assertDatabaseHas('users', [
@@ -115,6 +114,7 @@ class EloquentTest extends TestCase
 
     public function test_mass_delete_users()
     {
+        $this->withoutExceptionHandling();
         User::factory(4)->create();
         $this->assertDatabaseCount('users', 4);
 
