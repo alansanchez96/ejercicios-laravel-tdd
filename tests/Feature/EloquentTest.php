@@ -126,17 +126,17 @@ class EloquentTest extends TestCase
 
     public function test_soft_delete_projects()
     {
-        $this->withoutExceptionHandling();
         $project = new Project();
         $project->name = 'Some name';
         $project->save();
-
+        
         $response = $this->delete('projects/' . $project->id);
         $response->assertSee('Some name');
     }
 
     public function test_active_users()
     {
+        $this->withoutExceptionHandling();
         $user = User::factory()->create(['email_verified_at' => NULL]);
 
         $response = $this->get('users/active');
