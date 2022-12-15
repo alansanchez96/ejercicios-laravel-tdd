@@ -72,15 +72,14 @@ class EloquentTest extends TestCase
 
     public function test_create_project()
     {
-        
+
         $response = $this->post('projects', ['name' => 'Some name']);
         $response->assertRedirect();
     }
 
     public function test_mass_update_projects()
     {
-        $this->withoutExceptionHandling();
-        
+
         $project = new Project();
         $project->name = 'Old name';
         $project->save();
@@ -98,6 +97,7 @@ class EloquentTest extends TestCase
 
     public function test_check_or_update_user()
     {
+        $this->withoutExceptionHandling();
         $response = $this->get('users/check_update/john/john@john.com');
         $response->assertStatus(200);
         $this->assertDatabaseHas('users', [
